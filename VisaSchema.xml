@@ -1,0 +1,20 @@
+<Schema name="Visa Schema">
+  <Dimension type="StandardDimension" visible="true" foreignKey="CASE_ID" name="CASE">
+    <Hierarchy name="CASE" visible="true" hasAll="true">
+      <Table name="CASE" schema="PUBLIC">
+      </Table>
+      <Level name="CASE_NUMBER" visible="true" table="CASE" column="CASE_NUMBER" type="String" uniqueMembers="false" levelType="Regular">
+      </Level>
+      <Level name="CASE_STATUS" visible="true" table="CASE" column="CASE_STATUS" type="String" uniqueMembers="false" levelType="Regular">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="VISA_REQUEST" visible="true" cache="true" enabled="true">
+    <Table name="VISA_REQUEST" schema="PUBLIC" alias="">
+    </Table>
+    <DimensionUsage source="CASE" name="CASE" visible="true" foreignKey="CASE_ID">
+    </DimensionUsage>
+    <Measure name="PREVAILING_WAGE" column="PREVAILING_WAGE" aggregator="avg" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
